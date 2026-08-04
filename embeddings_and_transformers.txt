@@ -1,0 +1,42 @@
+Sentence Transformers and Embedding Models
+============================================
+
+What Are Embeddings?
+
+An embedding is a numerical representation of text (a word, sentence, or paragraph) in the form of a
+dense vector, typically containing anywhere from 100 to 1500 numbers. These vectors are designed so
+that texts with similar meaning are placed close together in the vector space, while unrelated texts
+are placed far apart. This allows machines to compare meaning mathematically rather than relying on
+exact word matches.
+
+The all-MiniLM-L6-v2 Model
+
+all-MiniLM-L6-v2 is a lightweight sentence embedding model built on the MiniLM architecture and fine-tuned
+using the Sentence Transformers framework. It converts a sentence or paragraph into a 384-dimensional
+vector. Despite its small size, it achieves strong performance on semantic similarity tasks while being
+significantly faster than larger transformer models like BERT-large. This makes it a popular choice for
+retrieval-augmented generation (RAG) applications where speed and efficiency matter.
+
+How Embeddings Enable Semantic Search
+
+Traditional keyword search looks for exact matches between the search query and stored documents.
+Semantic search, powered by embeddings, instead compares the meaning of the query to the meaning of
+stored text chunks. For example, a query like "How do I reset my password?" can successfully retrieve
+a document chunk that says "Steps to recover account access" even though the words are different,
+because their embeddings are close together in vector space.
+
+Cosine Similarity
+
+Cosine similarity is the most common metric used to compare two embedding vectors. It measures the
+angle between two vectors rather than their magnitude, producing a score between -1 and 1, where 1
+means the vectors point in exactly the same direction (identical meaning) and 0 means they are
+unrelated. Many vector databases, including FAISS, can be configured to use cosine similarity by
+normalizing vectors before indexing and using inner product search.
+
+Why Model Choice Matters in RAG Pipelines
+
+Choosing the right embedding model affects both retrieval quality and system performance. Larger models
+may capture more nuanced meaning but are slower and require more memory, while smaller models like
+all-MiniLM-L6-v2 offer a good balance of speed and accuracy for most document question-answering use
+cases. In production systems, developers often benchmark multiple embedding models against their own
+dataset before choosing one for deployment.
